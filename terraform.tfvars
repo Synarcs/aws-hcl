@@ -12,6 +12,6 @@ instance_type = "t2.micro"
 # bucket name
 s3BucketName = "s3-terraform.com"
 
-private_key_name = "/home/synarcs/.ssh/terraform"
+private_key_name = "/home/synarcs/.ssh/id_rsa.pub"
 
 remote_ssh_user = "ubuntu" 

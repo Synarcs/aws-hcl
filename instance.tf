@@ -24,6 +24,18 @@ data "aws_ami" "ubuntu" {
 variable "private_key_name" {} 
 variable "remote_ssh_user" {}
 
+resource "aws_key_pair" "terraform_key" {
+  key_name = "terraform" 
+  public_key = file(var.private_key_name)
+}
+
+
+variable "default_key_pair" {
+  description = "the aws_key_pair generated using terraform"
+  type = string 
+  default = "terraform"
+}
+
 resource "aws_instance" "run_server" {
     ami = data.aws_ami.ubuntu.id 
     instance_type = var.instance_type 
@@ -34,7 +46,7 @@ resource "aws_instance" "run_server" {
     vpc_security_group_ids = [aws_security_group.nginx-dep.id]
     availability_zone =  "us-east-1a"
     associate_public_ip_address =  true 
-    key_name = "terraform" 
+    key_name = var.default_key_pair 
 
     #  provisiooner connector 
     connection {
