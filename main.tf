@@ -4,12 +4,11 @@ terraform {
       source = "hashicorp/aws"
       version = "3.57.0"
     }
+     tls = {
+      source = "hashicorp/tls"
+      version = "3.1.0"
+    }
    }
-#    backend "s3" {
-#        bucket = "tfstate"
-#        key = "tfapp/state.tfstate" 
-#        region = "eu-west-3" 
-#    }
 }
 
 # configure the provider for the core terraform api 
